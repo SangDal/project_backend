@@ -35,6 +35,7 @@ app.post('/login', (req, res) => {
   const query = 'SELECT*FROM users WHERE username=?';
   connection.query(query, [username], (err, results) => {
     if (err) throw err;
+    console.log(results);
     
 
     if (results.length === 0) {
