@@ -1,9 +1,10 @@
 function submitForm() {
-  const username = document.getElementById('username').value;
+
+  const userid = document.getElementById('userid').value;
   const password = document.getElementById('password').value;
 
   const data = {
-    username: username,
+    userid: userid,
     password: password
   };
 
@@ -16,7 +17,7 @@ function submitForm() {
   })
   .then(function(response) {
       console.log(response.statusText); // 서버로부터 받은 응답 출력
-      
+      console.log(response.ok);
       if (response.ok) {
         window.location.href = 'index.html'; // 로그인 성공 시 index.html로 리디렉션
       } else {

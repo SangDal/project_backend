@@ -33,21 +33,21 @@ app.post('/login', (req, res) => {
 
   // MySQL에서 사용자 정보를 조회합니다.
   const query = 'SELECT*FROM users WHERE username=?';
-  connection.query(query, [username], (error, results) => {
-    if (error) throw error;
+  connection.query(query, [username], (err, results) => {
+    if (err) throw err;
     console.log(results);
+    
 
     if (results.length === 0) {
       res.status(401).json({ error: 'Invalid username or password' });
     } else {
       // 비밀번호를 비교합니다.
       const user = results[0];
-      bcrypt.compare(password, user.password, (error) => {
-        if (error) throw error;
+      bcrypt.compare(password, user.password, (err, match) => {
+        if (err) throw err;
 
         if (password === user.password) {
           res.json({ message: 'Login successful' });
-          // res.redirect('/index.html')
         } else {
           res.status(401).json({ error: 'Invalid username or password' });
         }
