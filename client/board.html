@@ -3,7 +3,7 @@
 	<head>
 		<!-- Basic Page Info -->
 		<meta charset="utf-8" />
-		<title>지켜Dream 관리자</title>
+		<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
 
 		<!-- Site favicon -->
 		<link
@@ -116,7 +116,7 @@
 							</a>
 						</li>
 						<li class="dropdown">
-							<a href="datatable1.html" class="dropdown-toggle dropdown-toggle-board">
+							<a href="javascript:;" class="dropdown-toggle dropdown-toggle-board">
 								<span class="micon bi bi-textarea-resize"></span
 								><span class="mtext">회원관리</span>
 							</a>
@@ -183,9 +183,8 @@
 									<col style="width: 5%;">
 									<col style="width: 15%;">
 									<col style="width: 15%;">
+									<col style="width: 50%;">
 									<col style="width: 15%;">
-									<col style="width: 40%;">
-									<col style="width: 10%;">
 								</colgroup>
 								<thead>
 									<tr>
@@ -202,7 +201,6 @@
 										</th>
 										<th>카테고리</th>
 										<th>작성자 ID</th>
-										<th>작성자 Name</th>
 										<th>글 제목</th>
 										<th>작성 일자</th>
 									</tr>
@@ -212,7 +210,6 @@
 										<td></td>
 										<td>지킴이집 사용후기</td>
 										<td>apple</td>
-										<td>김사과</td>
 										<td>GS25 지킴이집 후기 공유합니다.</td>
 										<td>2023-05-06</td>
 									</tr>
@@ -220,7 +217,6 @@
 										<td></td>
 										<td>Angelica Ramos</td>
 										<td>berry</td>
-										<td>배애리</td>
 										<td>GS24 지킴이집 후기 공유합니다.</td>
 										<td>010-1111-1111</td>
 									</tr>
@@ -228,7 +224,6 @@
 										<td></td>
 										<td>Ashton Cox</td>
 										<td>grape</td>
-										<td>포동</td>
 										<td>GS27 지킴이집 후기 공유합니다.</td>
 										<td>010-1111-1111</td>
 									</tr>
@@ -272,7 +267,7 @@
 			const rows = tbody.querySelectorAll('tr');  // 모든 행 선택
 			rows.forEach(row => {
 			const cells = row.querySelectorAll('td');  // 각 행의 셀 선택
-			const fifthCell = cells[4];  // 5번째 셀 선택
+			const fifthCell = cells[3];  // 5번째 셀 선택
 			// 5번째 셀의 텍스트를 a태그로 감싸기
 			const text = fifthCell.textContent;
 			fifthCell.innerHTML = `<a href="./board-read1.html">${text}</a>`;
