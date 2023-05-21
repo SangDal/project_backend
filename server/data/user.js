@@ -1,18 +1,30 @@
 import { db } from '../db/database.js';
 
 export async function getAll() {
-    return db.execute('select userid, username, hp, guardianHp, guardianHp2 from user').then((result) => result[0]);
+    return db.execute('select userid, username, guardianHp, guardianHp2, hp from user').then((result) => result[0]);
 }
 
-//트윗의 id를 뽑아서 확인하고 return 
-export async function create(text, userId) {
-    return db.execute('insert into tweets (text, createdAt, userId) values (?, ?, ?)', [text, new Date(), userId]).then((result) => console.log(result));
+export async function getById(id) {
+    return db.query('select userid, username, guardianHp, guardianHp2, hp from user WHERE userid = ?', [id]).then((result) => result[0][0])
 }
 
-export async function update(id, text) {
-    return db.execute('update tweets SET text=? where id=?', [text, id]).then(() => getById(id));
+export async function createUser(userid, username, password, guardianHp, guardianHp2, hp) {
+    const query = 'INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES (?, ?, ?, ?, ?, ?)';
+    const values = [userid, username, password, guardianHp, guardianHp2, hp];
+
+    await db.query(query, values);
 }
 
-export async function remove(id) {
-    return db.execute('delete from tweets where id=?', [id]);
+export async function update(userid, username, password, guardianHp, guardianHp2, hp) {
+    const query = 'UPDATE user SET username = ?, guardianHp = ?, guardianHp2 = ?, hp = ? WHERE userid = ?';
+    const values = [username, guardianHp, guardianHp2, hp, userid];
+
+    await db.query(query, values);
+}
+
+export async function remove(userid) {
+    const query = 'DELETE FROM user WHERE userid = ?';
+    const values = [userid];
+
+    await db.query(query, values);
 }

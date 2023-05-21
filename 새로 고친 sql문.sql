@@ -34,10 +34,10 @@ select * from user;
 select * from board;
 
 insert into Admin (userid, password) values ('admin', '1234');
-INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('user1', 'User1', 'password1', '123456789', '987654321', '111222333');
-INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('user2', 'User2', 'password2', '123456789', '987654321', '111222334');
-INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('user3', 'User3', 'password3', '123456789', '987654321', '111222335');
-INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('user4', 'User4', 'password4', '123456789', '987654321', '111222336');
+INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('apple', '김사과', '1234', '01012345678', '01041567891', '01055555555');
+INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('banana', '반하나', 'banana', '01011111111', '01011111111', '01011111111');
+INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('orang', '오란지', 'password3', '01022222222', '01022222222', '01022222222');
+INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('malon', '이메론', 'password4', '01033333333', '01033333333', '01033333333');
 INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('user5', 'User5', 'password5', '123456789', '987654321', '111222337');
 INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('user6', 'User6', 'password6', '123456789', '987654321', '111222338');
 INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('user7', 'User7', 'password7', '123456789', '987654321', '111222339');
@@ -49,6 +49,8 @@ INSERT INTO board (userid, category, title, content) VALUES ('user1', '자유게
 
 SELECT userid, userid, category, title, content ,hp FROM user;
 
+/*회원 삭제 쿼리*/
+DELETE FROM user WHERE userid = 'user3';
 
 /*삭제 SQL문*/
 -- DROP TABLE `safedream`.`user`;
