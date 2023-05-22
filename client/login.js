@@ -1,6 +1,7 @@
 function submitForm() {
   const userid = document.getElementById('userid').value;
   const password = document.getElementById('password').value;
+  
   const data = {
     userid: userid,
     password: password

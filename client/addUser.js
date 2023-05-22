@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const addUserForm = document.getElementById('addUserForm');
+    const token = localStorage.getItem('token'); // 토큰을 로컬 스토리지에서 가져옴
   
     addUserForm.addEventListener('submit', function (event) {
       event.preventDefault();
@@ -23,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('http://localhost:3000/user/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token // 가져온 토큰을 헤더에 추가
         },
         body: JSON.stringify(newUser)
         })

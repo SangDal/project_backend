@@ -7,8 +7,6 @@ export async function getAll(req, res, next){
     console.log("회원 조회 완료.");   
     return res.status(200).json(users);
 
-    // const token = createJwtToken(result.userid);
-    // return res.status(200).json({ token, userid });
 }
 export async function getOne(req, res, next){
   const id = req.params.userid;

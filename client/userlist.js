@@ -1,7 +1,14 @@
 
 // 회원 정보 조회 및 출력
 function fetchAndRenderMembers() {
-  fetch('http://localhost:3000/user/')
+  const token = localStorage.getItem('token'); // 토큰을 로컬 스토리지에서 가져옴
+
+  fetch('http://localhost:3000/user/', {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + token // 가져온 토큰을 헤더에 추가
+    }
+  })
     .then(response => response.json())
     .then(data => {
       const membersTable = document.getElementById('userList');
@@ -46,6 +53,7 @@ function fetchAndRenderMembers() {
 
 // 회원 정보 수정 함수 
 function updateMember(memberId) {
+  const token = localStorage.getItem('token');
   const updateForm = document.createElement('form');
   updateForm.innerHTML = `
     <h3>회원 정보 수정</h3>
@@ -69,7 +77,12 @@ function updateMember(memberId) {
   `;
 
   function MemberData(memberId) {
-    fetch(`http://localhost:3000/user/${memberId}`)
+    fetch(`http://localhost:3000/user/${memberId}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + token // 가져온 토큰을 헤더에 추가
+        }
+      })
       .then(response => response.json())
       .then(data => {
         const { username, guardianHp, guardianHp2, hp } = data;
@@ -96,6 +109,7 @@ function updateMember(memberId) {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token // 가져온 토큰을 헤더에 추가
       },
       body: JSON.stringify(updatedData),
     })
@@ -123,10 +137,14 @@ function updateMember(memberId) {
   document.addEventListener('click', function (event) {
     if (event.target.classList.contains('delete-button')) {
       const memberId = event.target.dataset.memberId;
+      const token = localStorage.getItem('token'); // 토큰을 로컬 스토리지에서 가져옴
 
       // 서버로 회원 삭제 요청
       fetch(`http://localhost:3000/user/${memberId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          'Authorization': 'Bearer ' + token // 가져온 토큰을 헤더에 추가
+        }
       })
         .then(function (response) {
           if (!response.ok) {
