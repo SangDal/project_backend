@@ -1,7 +1,10 @@
 let postIds = []
+const token = localStorage.getItem('token'); // 토큰을 로컬 스토리지에서 가져옴
+
 document.addEventListener('DOMContentLoaded', () => {
     const categorySelect = document.getElementById('categorySelect');
     const boardList = document.getElementById("boardList");
+    
     // 이전에 추가된 데이터 삭제
     while (boardList.firstChild) {
       boardList.firstChild.remove();
@@ -9,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 첫 페이지에 전체 리스트 뿌리기
     fetch(`http://localhost:3000/board?category=전체`, {
       method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + token // 가져온 토큰을 헤더에 추가
+      }
     })
     .then(response => response.json())
     .then(data => {
@@ -70,6 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       fetch(`http://localhost:3000/board?category=${selectedCategory}`, {
         method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + token // 가져온 토큰을 헤더에 추가
+        }
+
+
         // headers: {
         //   'Content-Type': 'application/json',
         //   'category': selectedCategory}
@@ -131,6 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
         postIds.forEach((postId) => {
           fetch(`http://localhost:3000/board?post_id=${postId}`, {
             method: 'DELETE',
+            headers: {
+              'Authorization': 'Bearer ' + token // 가져온 토큰을 헤더에 추가
+            }
           })
             .then((response) => {
               if (response.ok) {

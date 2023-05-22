@@ -1,10 +1,14 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const post_id = urlParams.get('post_id');
+const token = localStorage.getItem('token'); // 토큰을 로컬 스토리지에서 가져옴
 
 document.addEventListener('DOMContentLoaded', () => {
     fetch(`http://localhost:3000/board-read1?post_id=${post_id}`, {
       method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + token // 가져온 토큰을 헤더에 추가
+      }
     })
     .then(response => response.json())
     .then(data => {
@@ -28,7 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
  DeleteBtn.addEventListener('click', () => {
   fetch(`http://localhost:3000/board-read1?post_id=${post_id}`,
   {
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: {
+      'Authorization': 'Bearer ' + token // 가져온 토큰을 헤더에 추가
+    }
   }).then(
         window.location.href = './board.html')
     .catch(error => {

@@ -1,3 +1,5 @@
+const token = localStorage.getItem('token'); // 토큰을 로컬 스토리지에서 가져옴
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('myForm'); // 폼 요소의 ID를 지정해야 합니다
   form.addEventListener('submit', (e) => {
@@ -15,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('http://localhost:3000/html5-editor', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token // 가져온 토큰을 헤더에 추가
       },
       body: JSON.stringify(formDataJson)
     })
