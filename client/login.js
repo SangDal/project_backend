@@ -29,7 +29,5 @@ function submitForm() {
     .catch(function(error) {
       console.error(error);
       alert('로그인 요청에 실패했습니다.'); // 로그인 요청 실패 시 알림 표시
-    });
-
-}
-
+    })
+  }

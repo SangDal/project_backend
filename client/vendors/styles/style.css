@@ -4444,6 +4444,7 @@ body.IE .register-page-wrap .container {
 }
 .btn-save-div {
     display: flex;
+    justify-content: center;
     
 }
 #btn-save-a, #btn-delete-board{
@@ -4514,6 +4515,7 @@ body.IE .register-page-wrap .container {
     width: 50%;
     margin-right: 20px;
 }
+
 @media (min-width:1301px) and (max-width:1400px) {
     
     .header {

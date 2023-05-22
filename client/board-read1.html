@@ -147,25 +147,22 @@
 					
 					<!-- 글쓰는 공간 시작 -->
 					<div class="html-editor pd-20 card-box mb-30">
-						<h4 class="board-category"> 카테고리 값 입력
+						<h4 class="board-category" id="board-category"> 
 						</h4>
-						<h4 class="board-title">제목 값 입력</h4>
-						<h4 class="board-category" id="upload-name"> 작성자 이름,
-						</h4> <h4 class="board-category" id="upload-date"> 작성 일자
+						<h4 class="board-title" id="board-title"></h4>
+						<h4 class="board-category" id="upload-name"> 
+						</h4> <h4 class="board-category" id="upload-date"> 
 						</h4>
 						<hr>
-						<div class="board-content-box">
-							게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.
+						<div class="board-content-box" id="board-content">
+							게시글 내용입니다.게시글 내용입니다.
 						</div>
-						<div class="btn-save-div"><a
-							class="btn btn-primary dropdown-toggle"
-							href="#"
-							role="button"
-							id="btn-delete-board"
-						>
-							삭제하기
-						</a>
-						</div>	
+						<button class="btn btn-primary  btn-save-div"
+						type="submit"
+						role="button"
+						id="btn-delete-board"
+						>삭제하기
+						</button>	
 					</div>
 					<!-- 글쓰는 공간 끝 -->
 				</div>
@@ -197,6 +194,7 @@
 		<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
 		<!-- Datatable Setting js -->
 		<script src="vendors/scripts/datatable-setting.js"></script>
+		<script src="./board-read.js"></script>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript
 			><iframe

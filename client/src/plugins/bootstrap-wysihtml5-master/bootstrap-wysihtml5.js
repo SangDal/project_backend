@@ -167,63 +167,7 @@
             return editor;
         },
 
-        createToolbar: function(el, options) {
-            var self = this;
-            var toolbar = $("<ul/>", {
-                'class' : "wysihtml5-toolbar",
-                'style': "display:none"
-            });
-            var culture = options.locale || defaultOptions.locale || "en";
-            for(var key in defaultOptions) {
-                var value = false;
-
-                if(options[key] !== undefined) {
-                    if(options[key] === true) {
-                        value = true;
-                    }
-                } else {
-                    value = defaultOptions[key];
-                }
-
-                if(value === true) {
-                    toolbar.append(templates(key, locale[culture], options));
-
-                    if(key === "html") {
-                        this.initHtml(toolbar);
-                    }
-
-                    if(key === "link") {
-                        this.initInsertLink(toolbar);
-                    }
-
-                    if(key === "image") {
-                        this.initInsertImage(toolbar);
-                    }
-                }
-            }
-
-            if(options.toolbar) {
-                for(key in options.toolbar) {
-                    toolbar.append(options.toolbar[key]);
-                }
-            }
-
-            toolbar.find("a[data-wysihtml5-command='formatBlock']").click(function(e) {
-                var target = e.target || e.srcElement;
-                var el = $(target);
-                self.toolbar.find('.current-font').text(el.html());
-            });
-
-            toolbar.find("a[data-wysihtml5-command='foreColor']").click(function(e) {
-                var target = e.target || e.srcElement;
-                var el = $(target);
-                self.toolbar.find('.current-color').text(el.html());
-            });
-
-            this.el.before(toolbar);
-
-            return toolbar;
-        },
+        
 
         initHtml: function(toolbar) {
             var changeViewSelector = "a[data-wysihtml5-action='change_view']";

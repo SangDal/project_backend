@@ -1,7 +1,5 @@
 create database safedream;
-
 use safedream;
-
 CREATE TABLE user (
     userid VARCHAR(45) PRIMARY KEY,
     username VARCHAR(45) NOT NULL,
@@ -17,8 +15,8 @@ CREATE TABLE Admin (
     password VARCHAR(45) NOT NULL
 );
 
-select * from admin;
-select * from admin where userid="admin" and password="1234";
+drop table admin;
+select * from admin where userid="root" and password="1234";
 CREATE TABLE board (
     post_id INT PRIMARY KEY auto_increment,
     userid VARCHAR(45) NOT NULL,
@@ -32,8 +30,7 @@ CREATE TABLE board (
 select * from Admin;
 select * from user;
 select * from board;
-
-insert into Admin (userid, password) values ('admin', '1234');
+insert into Admin (userid, password) values ('root', '1234');
 INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('user1', 'User1', 'password1', '123456789', '987654321', '111222333');
 INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('user2', 'User2', 'password2', '123456789', '987654321', '111222334');
 INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('user3', 'User3', 'password3', '123456789', '987654321', '111222335');
@@ -44,13 +41,14 @@ INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUE
 INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('user8', 'User8', 'password8', '123456789', '987654321', '111222340');
 INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('user9', 'User9', 'password9', '123456789', '987654321', '111222341');
 INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('user10', 'User10', 'password10', '123456789', '987654321', '111222342');
+INSERT INTO user (userid, username, password, guardianHp, guardianHp2, hp) VALUES ('Admin', 'Admin', 'password10', '123456789', '987654321', '111222342');
 
 INSERT INTO board (userid, category, title, content) VALUES ('user1', '자유게시판', 'GS 29 사용후기', '좋습니다. 좋아요.');
+INSERT INTO board (userid, category, title, content) VALUES ('user3', '자유게시판', 'CU 역삼점 사용후기', '아주좋습니다. 좋아요.');
+INSERT INTO board (userid, category, title, content) VALUES ('user2', '위험지역 공유', '역삼역 1번출구에서 우회전해서 두번째로나오는 골목길 후기', '너무 어둡네요.');
+INSERT INTO board (userid, category, title, content) VALUES ('user2', '위험지역 공유', '역삼역 1번출구에서 우회전해서 두번째로나오는 골목길 후기', '너무 어둡네요.');
+INSERT INTO board (userid, category, title, content) VALUES ('Admin', '공지', '프로젝트 완성해서 치킨먹자', '치즈볼에 콜라추가해서요');
+INSERT INTO board (userid, category, title, content) VALUES ('Admin', '공지', '치킨 최대 몇마리 드시나요?', '솔직하게 말해주세요.');
+select category, userid, title, DATE_FORMAT(created_At, '%Y-%m-%d') from board where category='위험지역 공유';
 
-SELECT userid, userid, category, title, content ,hp FROM user;
-
-
-/*삭제 SQL문*/
--- DROP TABLE `safedream`.`user`;
--- DELETE FROM user;
--- drop table board;
+-- delete from board where post_id='6';

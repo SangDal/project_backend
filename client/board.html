@@ -116,7 +116,7 @@
 							</a>
 						</li>
 						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle dropdown-toggle-board">
+							<a href="./datatable1.html" class="dropdown-toggle dropdown-toggle-board">
 								<span class="micon bi bi-textarea-resize"></span
 								><span class="mtext">회원관리</span>
 							</a>
@@ -150,7 +150,8 @@
 					<div class="page-header">
 						<div class="row">
 							<h4 class="col-md-6 col-sm-12" id="list-title">게시글 목록<div>
-								<select class="category-combo">
+								<select class="category-combo" id="categorySelect">
+									<option value="전체" selected>전체</option>
 									<option value="위험지역 공유">위험지역 공유</option>
 									<option value="자유게시판">자유게시판</option>
 									<option value="공지">공지</option>
@@ -165,15 +166,14 @@
 									>
 										글쓰기
 									</a>
-								<a
+								<button
 										class="btn btn-primary dropdown-toggle"
-										href="#"
+										type="sumbit"
 										role="button"
-										data-toggle="dropdown"
 										id="btn-delete-a"
 									>
 										삭제
-									</a>
+									</button>
 							</div>
 						</div>
 						
@@ -205,33 +205,18 @@
 										<th>작성 일자</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
+								<tbody id="boardList">
+									 <!-- <tr>
 										<td></td>
 										<td>지킴이집 사용후기</td>
 										<td>apple</td>
 										<td>GS25 지킴이집 후기 공유합니다.</td>
 										<td>2023-05-06</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td>Angelica Ramos</td>
-										<td>berry</td>
-										<td>GS24 지킴이집 후기 공유합니다.</td>
-										<td>010-1111-1111</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td>Ashton Cox</td>
-										<td>grape</td>
-										<td>GS27 지킴이집 후기 공유합니다.</td>
-										<td>010-1111-1111</td>
-									</tr>
+									</tr> -->
 								</tbody>
 							</table>
 						</div>
 					</div>
-					<!-- Checkbox select Datatable End -->
 				</div>
 			</div>
 		</div>
@@ -261,19 +246,8 @@
 		<!-- Datatable Setting js -->
 		<script src="vendors/scripts/datatable-setting.js"></script>
 		<!-- Google Tag Manager (noscript) -->
-		<!-- 게시글 제목에 a태그 걸기 시작 -->
-		<script>
-			const tbody = document.querySelector('tbody');  // 테이블 요소 선택
-			const rows = tbody.querySelectorAll('tr');  // 모든 행 선택
-			rows.forEach(row => {
-			const cells = row.querySelectorAll('td');  // 각 행의 셀 선택
-			const fifthCell = cells[3];  // 5번째 셀 선택
-			// 5번째 셀의 텍스트를 a태그로 감싸기
-			const text = fifthCell.textContent;
-			fifthCell.innerHTML = `<a href="./board-read1.html">${text}</a>`;
-			});
-		</script>
-		<!-- 게시글 제목에 a태그 걸기 끝 -->
+		
+		<script src="./boardlist.js"></script>
 		<noscript
 			><iframe
 				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"

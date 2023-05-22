@@ -156,28 +156,27 @@
 					</div>
 					
 					<!-- 글쓰는 공간 시작 -->
-					<div class="html-editor pd-20 card-box mb-30">
-						<h4 class="h6">카테고리:
-							<select class="category-combo">
-								<option value="위험지역 공유">위험지역 공유</option>
-								<option value="자유게시판">자유게시판</option>
-								<option value="공지">공지</option>							</select>
-						</h4>
-						<p class="board-create-title-p">제목: <textarea name="board-create-title" class="board-create-title" placeholder="제목을 입력하세요."></textarea></p>
-						<textarea
-							class="textarea_editor form-control border-radius-0" id="enter-text-box"
-							placeholder="Enter text ..."
-						></textarea>
-						<div class="btn-save-div"><a
-							class="btn btn-primary dropdown-toggle"
-							href="#"
-							role="button"
-							id="btn-save-a"
-						>
-							저장하기
-						</a>
-						</div>	
-					</div>
+					<form action="./board.html" method="post" id="myForm">
+						<div class="html-editor pd-20 card-box mb-30">
+							<h4 class="h6">카테고리:
+								<select class="category-combo" name="category">
+									<option value="위험지역 공유">위험지역 공유</option>
+									<option value="자유게시판">자유게시판</option>
+									<option value="공지">공지</option>							</select>
+							</h4>
+							<p class="board-create-title-p">제목: <textarea name="title" class="board-create-title" placeholder="제목을 입력하세요." required></textarea></p>
+							<textarea
+								class="textarea_editor form-control border-radius-0" 
+								name="content"
+								id="enter-text-box"
+								placeholder="Enter text ..." required
+							></textarea>
+							<button type="submit" role="button" class="btn-save-div btn btn-primary dropdown-toggle" id="btn-save-a">
+							>
+								저장하기
+							</button>	
+						</div>
+					</form>
 					<!-- 글쓰는 공간 끝 -->
 				</div>
 			</div>
@@ -208,6 +207,7 @@
 		<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
 		<!-- Datatable Setting js -->
 		<script src="vendors/scripts/datatable-setting.js"></script>
+		<script src="./html5-editor_create.js"></script>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript
 			><iframe

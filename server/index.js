@@ -5,6 +5,7 @@ import adminRouter from './router/admin.js';
 import userRouter from  "./router/user.js"
 import { config } from './config.js';
 import morgan from 'morgan';
+import { db } from './db/database.js'
 
 const app = express();
 
@@ -19,3 +20,4 @@ app.use("/user", userRouter);
 app.listen(config.host.port, () => {
     console.log(`Server is running on port ${config.host.port}`);
 });
+

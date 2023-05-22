@@ -146,7 +146,7 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">50,000</div>
+									<div id="user-count" class="weight-700 font-24 text-dark"></div>
 									<div class="font-14 text-secondary weight-500">
 										사용자
 									</div>
@@ -168,7 +168,7 @@
 								
 								<div class="d-flex flex-wrap">
 									<div class="widget-data">
-										<div class="weight-700 font-24 text-dark text-nowrap">230</div>
+										<div class="weight-700 font-24 text-dark text-nowrap"></div>
 										<div class="font-14 text-secondary weight-500 text-nowrap">
 											사용자
 										</div>
@@ -184,7 +184,7 @@
 							<div class="card-box height-100-p widget-style3 boards">
 								<div class="d-flex flex-wrap">
 									<div class="widget-data">
-										<div class="weight-700 font-24 text-dark text-nowrap">10</div>
+										<div class="weight-700 font-24 text-dark text-nowrap"></div>
 										<div class="font-14 text-secondary weight-500 text-nowrap">
 											공지
 										</div>
@@ -221,7 +221,18 @@
 		<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 		<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 		<!-- <script src="vendors/scripts/dashboard3.js"></script> -->
-		<!-- Google Tag Manager (noscript) -->
+		
+		<script>
+            fetch('http://localhost:3000/index')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('user-count').innerText = data.countUser;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('user-count').innerText = 'Error loading user count';
+                });
+        </script>
 		<noscript
 			><iframe
 				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
