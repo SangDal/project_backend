@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import * as userRepository from '../data/admin.js'
 import { config } from '../config.js';
 
-const AUTH_ERROR = { message: '인증 에러!'};
+const AUTH_ERROR = { message: '인증 에러!md/auth'};
 
 export const isAuth = async (req, res, next) => {
     const authHeader = req.get('Authorization');
@@ -20,7 +20,7 @@ export const isAuth = async (req, res, next) => {
         config.jwt.secretKey,
         async (error, decoded) => {
             if(error){
-                return res.status(401).json({ message: '인증 에러!1234'});
+                return res.status(401).json(AUTH_ERROR);
             }
             const user = await userRepository.findById(decoded.userid);
             console.log("---------------------");

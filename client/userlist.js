@@ -12,14 +12,7 @@ function fetchAndRenderMembers() {
       data.forEach(member => {
         const tr = document.createElement('tr');
         tr.innerHTML = `										
-        <th>
-          <div class="dt-checkbox">
-          <input
-            type="checkbox"
-          />
-          <span class="dt-checkbox-label"></span>
-        </div>
-      </th>
+        <th></th>
           <td>${member.userid}</td>
           <td>${member.username}</td>
           <td>${member.guardianHp}</td>

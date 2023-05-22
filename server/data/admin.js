@@ -11,7 +11,10 @@ export async function createUser(user){
 
 export async function findById(userid){
     console.log("들어옴 findById");
-    return db.execute('select userid from users where userid=?', [userid]).then((result) => result[0][0]);
+    console.log(userid);
+    return db.execute('select userid from admin where userid=?', [userid]).then((result) => result[0][0]);
+
+    // 여기서 userid로 admin찾아서 
 }
 
 export async function login(userid, password) {

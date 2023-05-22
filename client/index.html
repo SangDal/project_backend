@@ -209,7 +209,8 @@
 			2023 Lucy - All rights reserved
 		</div>
 		
-		
+		<!-- 추가 js -->
+		<script src="./index.js" defer></script>
 		<!-- js -->
 		<script src="vendors/scripts/core.js"></script>
 		<script src="vendors/scripts/script.min.js"></script>
@@ -222,17 +223,7 @@
 		<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 		<!-- <script src="vendors/scripts/dashboard3.js"></script> -->
 		
-		<script>
-            fetch('http://localhost:3000/index')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('user-count').innerText = data.countUser;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    document.getElementById('user-count').innerText = 'Error loading user count';
-                });
-        </script>
+
 		<noscript
 			><iframe
 				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"

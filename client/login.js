@@ -1,8 +1,6 @@
 function submitForm() {
-
   const userid = document.getElementById('userid').value;
   const password = document.getElementById('password').value;
-
   const data = {
     userid: userid,
     password: password
@@ -15,19 +13,22 @@ function submitForm() {
     },
     body: JSON.stringify(data)
   })
-  .then(function(response) {
+    .then(function(response) {
       console.log(response.statusText); // 서버로부터 받은 응답 출력
-      console.log(response.ok);
+      console.log(response);
       if (response.ok) {
-        window.location.href = 'index.html'; // 로그인 성공 시 index.html로 리디렉션
+        return response.json(); // 응답에서 토큰 추출하기 위해 response.json() 호출
       } else {
-        response.json().then(function(data) {
-          alert('로그인 실패: ' + data.message); // 로그인 실패 시 알림 표시
-        });
+        throw new Error('로그인 실패');
       }
+    })
+    .then(function(data) {
+      const token = data.token; // 응답에서 토큰 추출
+      localStorage.setItem('token', token); // 토큰을 로컬 스토리지에 저장
+      window.location.href = 'index.html'; // 로그인 성공 시 index.html로 리디렉션
     })
     .catch(function(error) {
       console.error(error);
-      alert('로그인 요청에 실패했습니다.'); // 로그인 요청 실패 시 알림 표시
-    })
-  }
+      alert('로그인 실패: ' + error.message); // 로그인 요청 실패 시 알림 표시
+    });
+}
