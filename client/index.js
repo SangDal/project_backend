@@ -18,6 +18,8 @@ function fetchDataWithToken() {
       })
       .then(data => {
         document.getElementById('user-count').innerText = data.countUser;
+        document.getElementById('userBoard-count').innerText = data.countBoard.countBoardUser;
+        document.getElementById('adminBoard-count').innerText = data.countBoard.countBoardAdmin;
       })
       .catch(error => {
         console.error('Error:', error);

@@ -72,10 +72,14 @@ export async function deleteBoard(req, res){
 
 export async function countMain(req, res) {
     console.log('----------')
-    const countUser = await adminRepository.count();
-    console.log(countUser)
+    const countUser = await adminRepository.countUser();
+    const countBoard = await adminRepository.countBoard();
+    console.log(countUser, countBoard)
     if(!countUser){
-        return res.status(401).json({ error: 'Invalid userid' });
+        return res.status(401).json({ error: '유저 수 에러' });
     }
-    return res.status(200).json({countUser})
+    if(!countBoard){
+        return res.status(401).json({ error: '게시글 수 에러' });
+    }
+    return res.status(200).json({countUser, countBoard})
 }

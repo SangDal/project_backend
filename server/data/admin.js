@@ -54,10 +54,26 @@ export async function deleteboard(post_id){
 }
 
 
-// 메인 페이지에 카운팅하기
-export async function count() {
+// 메인 페이지에 유저 카운팅하기
+export async function countUser() {
     return db.execute('SELECT COUNT(*) AS count FROM user')
-    .then((result) =>result[0][0].count)
-    .catch(err => console.log(err))
+        .then((result) => result[0][0].count)
+        .catch(err => console.log(err))
 }
 
+//메인 페이지에 게시글 카운팅하기
+export async function countBoard() {
+    const query1 = 'SELECT COUNT(*) AS count FROM board WHERE category="자유게시판" or category="위험지역 공유"';
+    const query2 = 'SELECT COUNT(*) AS count FROM board WHERE category="공지"';
+
+    const result1 = await db.execute(query1).then((result) => result[0][0].count).catch(err => console.log(err));
+    const result2 = await db.execute(query2).then((result) => result[0][0].count).catch(err => console.log(err));
+
+    return {
+        countBoardUser: result1,
+        countBoardAdmin: result2
+        //     return db.execute('SELECT COUNT(*) AS count FROM board WHERE category="자유게시판" or category="위험지역 공유"')
+        //     .then((result) =>result[0][0].count)
+        //     .catch(err => console.log(err))
+    }
+}
