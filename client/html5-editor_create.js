@@ -40,3 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+function clearToken() {
+  console.log(token);
+  localStorage.clear(token);
+  console.log('토큰 삭제 완료');
+}

@@ -1,6 +1,6 @@
+const token = localStorage.getItem('token'); // 토큰을 로컬 스토리지에서 가져옴
 
 function fetchDataWithToken() {
-    const token = localStorage.getItem('token'); // 토큰을 로컬 스토리지에서 가져옴
     
   
     fetch('http://localhost:3000/index', {
@@ -22,7 +22,13 @@ function fetchDataWithToken() {
       .catch(error => {
         console.error('Error:', error);
         document.getElementById('user-count').innerText = 'Error loading user count';
-      });
+      });  
+
   }
-  
+  function clearToken() {
+    console.log(token);
+    localStorage.clear(token);
+    console.log('토큰 삭제 완료');
+  }
+
   window.addEventListener('load', fetchDataWithToken);

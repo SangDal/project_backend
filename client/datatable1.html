@@ -95,6 +95,7 @@
 						<a class="dropdown-toggle logout-a"
 						href="./login.html"
 						data-toggle="right-sidebar"
+						onclick="clearToken()"
 						>로그아웃 <i class="dw dw-logout1"></i>
 						</a>
 				</div>
@@ -154,12 +155,16 @@
 					<!-- Checkbox select Datatable start -->
 					<div class="page-header">
 						<div class="row">
-							<h4 class="col-md-6 col-sm-12">Data Table</h4>
+							<h4 class="col-md-6 col-sm-12">
+									Data Table
+									<div id="addContainer"></div>
+									<div id="editContainer"></div>
+							</h4>
 							<div class="col-md-6 col-sm-12 text-right" id="btn-delete">
 								<button
 										class="btn btn-primary dropdown-toggle"
 										id="btn-delete-a"
-										onclick="window.open('./addUser.html')"
+										onclick="addMember()"
 									>
 										추가
 									</button>

@@ -44,3 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('데이터 전송에 실패했습니다.');
     })
  })
+ function clearToken() {
+  console.log(token);
+  localStorage.clear(token);
+  console.log('토큰 삭제 완료');
+}
