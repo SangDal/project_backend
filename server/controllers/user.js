@@ -22,9 +22,9 @@ export async function getOne(req, res, next){
 // 회원 추가 완료 (포스맨에서 확인완료)
 export async function createUser(req, res, next){
   try {
-    const { userid, username, password, guardianHp, guardianHp2, hp } = req.body;
+    const { userid, username, password, guardianHp, hp } = req.body;
 
-    await userRepository.createUser(userid, username, password, guardianHp, guardianHp2, hp);
+    await userRepository.createUser(userid, username, password, guardianHp, hp);
 
     res.json({ message: '회원 정보가 추가되었습니다.' });
 
@@ -38,9 +38,9 @@ export async function createUser(req, res, next){
 export async function updateUser(req, res, next) {
   try {
     const { userid } = req.params;
-    const { username, password, guardianHp, guardianHp2, hp } = req.body;
+    const { username, password, guardianHp, hp } = req.body;
 
-    await userRepository.update(userid, username, password, guardianHp, guardianHp2, hp);
+    await userRepository.update(userid, username, password, guardianHp, hp);
 
     res.json({ message: '회원 정보가 수정되었습니다.' });
   } catch (error) {

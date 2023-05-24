@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="backimg">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/IDPWsearch_edit.css">
+    <script src="update.js"></script>
+    <title>지켜Dream</title>
+</head>
+<body>
+    <div id="imgbox">
+        <img src="./images/logo.png" alt="" >
+    </div>
+    <div class="content">
+        <div class="nav">
+            <div id="textbox_id">
+                <h3 style="color: black;">[ 아이디 찾기 ]</h3>
+                <p class="text">이름</p>
+                <input type="text" id="username" class="input" maxlength="20" placeholder="이름을 입력하세요.">
+                <p class="text">휴대폰 번호</p>
+                <input type="text" id="HP" class="input" maxlength="20" placeholder="핸드폰 번호를 입력하세요.">
+                <button class="btn" onclick="alertToggle()">아이디 찾기</button>
+                <div class="noticeBoxID">
+                    <p style="color:black">아이디 : </p>
+                    <button class="btn" onclick="location.href='./login_edit.html'">로그인</button>
+                </div>
+            </div>
+            <div id="textbox_pw">
+                <h3 style="color: black;">[ 비밀번호 찾기 ]</h3>
+                <p class="text">이름</p>
+                <input type="text" id="username" class="input" maxlength="20" placeholder="이름을 입력하세요.">
+                <p class="text">휴대폰 번호</p>
+                <input type="text" id="HP" class="input" maxlength="20" placeholder="핸드폰 번호를 입력하세요.">
+                <button class="code_btn">인증번호 발송</button>
+
+                <P class="text" style="clear: both;">인증번호</P>
+                <input type="text" id="code" class="input" maxlength="20" placeholder="인증번호를 입력하세요.">
+                <button class="btn" onclick="PWToggle()">비밀번호 찾기</button>
+                <div class="noticeBoxPW">
+                    <div id="pw_div">
+                        <p class="text">새 비밀번호</p>
+                        <input type="password" id="userpw" class="input" maxlength="20" placeholder="비밀번호를 입력하세요.">
+                        <p class="text">새 비밀번호 확인</p>
+                        <input type="password" id="userpw_a" class="input" maxlength="20" placeholder="비밀번호를 입력하세요.">
+                        <button class="btn" onclick="PWAToggle()">비밀번호 재설정</button>
+                            <div class="noticeBoxPWA">
+                                <h2>비밀번호 변경이 완료되었습니다.!!</h2>
+                                <button class="btn" onclick="location.href='./login_edit.html'">로그인</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

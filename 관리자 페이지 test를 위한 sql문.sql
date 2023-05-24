@@ -1,5 +1,6 @@
 create database safedream;
 use safedream;
+
 CREATE TABLE user (
     userid VARCHAR(45) PRIMARY KEY,
     username VARCHAR(45) NOT NULL,
@@ -15,8 +16,12 @@ CREATE TABLE Admin (
     password VARCHAR(45) NOT NULL
 );
 
+# 서비스 로그인, 회원가입할때 해쉬 비밀번호 저장용 
+ALTER TABLE user MODIFY password VARCHAR(100) NOT NULL;
+
 drop table admin;
 select * from admin where userid="root" and password="1234";
+
 CREATE TABLE board (
     post_id INT PRIMARY KEY auto_increment,
     userid VARCHAR(45) NOT NULL,

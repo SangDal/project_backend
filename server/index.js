@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import adminRouter from './router/admin.js';
 import userRouter from  "./router/user.js"
+import dreamRouter from "./router/dream.js"
 import { config } from './config.js';
 import morgan from 'morgan';
 
@@ -13,7 +14,7 @@ app.use(cors());
 app.use(morgan("tiny")); // 요청온거 확인하게 
 app.use(adminRouter);
 app.use("/user", userRouter);
-
+app.use("/safedream", dreamRouter);
 
 
 app.listen(config.host.port, () => {

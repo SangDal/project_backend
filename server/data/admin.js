@@ -4,11 +4,6 @@ export async function findByUsername(username) {
     return db.execute('select * from user where username=?', [username]).then((result) => result[0][0]);
 }
 
-export async function createUser(user){
-    const {username, password, name, email, url } = user;
-    return db.execute('insert into user(username, password, name, email, url) values (?, ?, ?, ?, ?)', [username, password, name, email, url]).then((result) => console.log(result[0].insertId));
-}
-
 export async function findById(userid){
     console.log("들어옴 findById");
     console.log(userid);
