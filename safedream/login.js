@@ -15,16 +15,22 @@ function loginSrv() {
     body: JSON.stringify(data)
   })
     .then(function(response) {
-        if (response.ok) {
-            // 로그인 성공 시 페이지 리디렉션
-            location.href = './Main_1.html';
-        } else {
-            alert('로그인 실패 :  아이디 또는 패스워드를 확인해주세요.');
-            // 로그인 실패 시 에러 처리 등의 동작 수행
-        }
+      console.log(response.statusText); // 서버로부터 받은 응답 출력
+      console.log(response);
+      if (response.ok) {
+        return response.json(); // 응답에서 토큰 추출하기 위해 response.json() 호출
+      } else {
+        alert('로그인 실패 :  아이디 또는 패스워드를 확인해주세요.');
+      }
+    })
+    .then(function(data) {
+      const token = data.token; // 응답에서 토큰 추출
+      localStorage.setItem('token', token); // 토큰을 로컬 스토리지에 저장
+      location.href = './Main_1.html'; // 로그인 성공 시 index.html로 리디렉션
     })
     .catch(function(error) {
-        console.error(error);
-        alert('로그인 요청에 실패했습니다.');
+      console.error(error);
+      alert('로그인 실패: ' + error.message); // 로그인 요청 실패 시 알림 표시
     });
+
 }

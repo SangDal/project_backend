@@ -133,3 +133,11 @@ function PWAToggle() {
 function goBack() {
     window.history.back();
 }
+
+
+function clearToken() {
+    const token = localStorage.getItem('token');
+    console.log(token);
+    localStorage.clear(token);
+    console.log('토큰 삭제 완료');
+}

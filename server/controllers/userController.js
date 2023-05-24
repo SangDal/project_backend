@@ -2,6 +2,8 @@
 import bcrypt from 'bcrypt';
 import { config } from '../config.js';
 import { db as pool } from '../db/database.js';
+import jwt from 'jsonwebtoken';
+import * as adminRepository from '../data/admin.js';
 
 
 
@@ -74,7 +76,9 @@ export async function login(req, res) {
             return res.status(401).json({ message: '유효하지 않은 사용자 인증 정보' });
         }
 
-        res.status(200).json({ message: '로그인 성공' });
+        // res.status(200).json({ message: '로그인 성공' });
+        const token = createJwtToken(user.userid);
+        return res.status(200).json({ token, userid });
 
     } catch (error) {
         console.error(error);
@@ -82,20 +86,18 @@ export async function login(req, res) {
     }
 };
 
-// g회원 정보 수정
+// 회원 정보 수정
 export async function updateUser(req, res) {
-    const { userid, password, username, hp, guardianHp } = req.body;
+    const { username, password, hp, guardianHp } = req.body;
+    const userid = await adminRepository.UserfindById(req.userid);
 
     try {
         // bcrypt를 사용해 새로운 비밀번호를 해시화
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // DB에 업데이트 쿼리를 보냄
-        const sql = `
-            UPDATE user 
-            SET password = ?, username = ?, hp = ?, guardianHp = ? WHERE userid = ?
-        `;
-        await pool.query(sql, [hashedPassword, username, hp, guardianHp,  userid]);
+        const sql = 'UPDATE user SET username = ?, password = ?, guardianHp = ?, hp = ? WHERE userid = ?';
+        await pool.query(sql, [username, hashedPassword,   guardianHp,hp, userid.userid]);
 
         res.status(200).json({ message: '회원 정보 수정 성공' });
     } catch (error) {
@@ -105,12 +107,11 @@ export async function updateUser(req, res) {
 }
 
 export async function deleteUser(req, res) {
-    const { userid } = req.params;
-
+    const userid = await adminRepository.UserfindById(req.userid);
     try {
         // DB에서 해당 사용자를 삭제
         const sql = 'DELETE FROM user WHERE userid = ?';
-        await pool.query(sql, [userid]);
+        await pool.query(sql, [userid.userid]);
         console.log(userid);
 
         res.status(200).json({ message: '회원 삭제 성공' });
@@ -119,4 +120,18 @@ export async function deleteUser(req, res) {
         console.error(error);
         res.status(500).json({ message: '서버 오류' });
     }
+}
+
+
+// 토큰 인증방식 
+export async function me (req, res, next){
+    const user = await adminRepository.findById(req.userid);
+    if(!user){
+        return res.status(404).json({ message:'사용자가 존재하지 않음'});
+    }
+    res.status(200).json({ token: req.token, username: user.username});
+}
+
+function createJwtToken(userid) {
+    return jwt.sign({userid}, config.jwt.secretKey, {expiresIn: config.jwt.expiresInSec})
 }
