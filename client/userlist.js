@@ -50,6 +50,7 @@ function fetchAndRenderMembers() {
 }
 
 // 회원 추가 함수
+
 function addMember() {
   const addForm = document.createElement('form');
   addForm.innerHTML = `
@@ -248,16 +249,11 @@ document.addEventListener('click', function (event) {
     document.addEventListener('DOMContentLoaded', () => {
       fetchAndRenderMembers();
     });
+
     function cancelAdd(){
-      fetchAndRenderMembers();
-      const addContainer = document.getElementById('addContainer');
-      if(!addContainer){
-        addContainer.innerHTML = '';
-        addContainer.appendChild(addForm);
-      }else{
-        editContainer.innerHTML = '';
-        editContainer.appendChild(updateForm);
-      }
+
+        location.reload();
+      
     }
     
     function clearToken() {
