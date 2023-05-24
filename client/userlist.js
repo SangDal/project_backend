@@ -53,29 +53,29 @@ function fetchAndRenderMembers() {
 function addMember() {
   const addForm = document.createElement('form');
   addForm.innerHTML = `
-  <h3>회원 추가</h3> 
+  <h4 style="color:blue; margin-top: 10px;">회원 추가</h4>
   <div>
-    <label for="userid">ID:</label>
-    <input type="text" id="userid" name="userid" required>
+    <label for="userid" class="addlist">ID:</label><br>
+    <input class="addlistinput" type="text" id="userid" name="userid" required>
   </div>
   <div>
-    <label for="username">이름:</label>
-    <input type="text" id="username" name="username" required>
+    <label for="username" class="addlist">이름:</label><br>
+    <input class="addlistinput" type="text" id="username" name="username" required>
   </div>
   <div>
-    <label for="password">비밀번호:</label>
-    <input type="password" id="password" name="password" required>
+    <label for="password" class="addlist">비밀번호:</label><br>
+    <input class="addlistinput" type="password" id="password" name="password"  style="font-family:none !important" required>
   </div>
   <div>
-    <label for="guardianHp">보호자 휴대폰 번호:</label>
-    <input type="text" id="guardianHp" name="guardianHp" required>
+    <label for="guardianHp" class="addlist">보호자 휴대폰 번호:</label><br>
+    <input class="addlistinput" type="text" id="guardianHp" name="guardianHp" required>
   </div>
   <div>
-    <label for="hp">휴대폰 번호:</label>
-    <input type="text" id="hp" name="hp" required>
-  </div>
-  <button type="submit"> 추가 </button> 
-  <button type="button" onclick="cancelAdd()"> 취소 </button>  
+    <label for="hp" class="addlist">휴대폰 번호:</label><br>
+    <input class="addlistinput" type="text" id="hp" name="hp" required>
+  </div><br>
+  <button class="btn btn-primary addlistbtn" type="submit"> 추가 </button>
+  <button class="btn btn-primary addlistbtn" type="button" onclick="cancelAdd()"> 취소 </button>
   `;
   
   
@@ -125,21 +125,21 @@ function addMember() {
   function updateMember(memberId) {
     const updateForm = document.createElement('form');
     updateForm.innerHTML = `
-    <h3>회원 정보 수정</h3>
+    <h4>회원 정보 수정</h4>
     <div>
-    <label for="username">이름:</label>
-    <input type="text" id="username" name="username" required>
+    <label for="username" class="addlist">이름:</label><br>
+    <input class="addlistinput" type="text" id="username" name="username" required>
     </div>
     <div>
-    <label for="guardianHp">보호자 휴대폰 번호:</label>
-    <input type="text" id="guardianHp" name="guardianHp" required>
+    <label for="guardianHp" class="addlist">보호자 휴대폰 번호:</label><br>
+    <input class="addlistinput" type="text" id="guardianHp" name="guardianHp" required>
     </div>
     <div>
-    <label for="hp">휴대폰 번호:</label>
-    <input type="text" id="hp" name="hp" required>
-    </div>
-    <button type="submit">수정</button>
-    <button type="button" onclick="cancelAdd()"> 취소 </button>  
+    <label for="hp" class="addlist">휴대폰 번호:</label><br>
+    <input class="addlistinput" type="text" id="hp" name="hp" required>
+    </div><br>
+    <button class="btn btn-primary addlistbtn" type="submit">수정</button>
+    <button class="btn btn-primary addlistbtn" type="button" onclick="cancelAdd()"> 취소 </button>
     `;
     
     function MemberData(memberId) {
@@ -241,7 +241,6 @@ document.addEventListener('click', function (event) {
     function cancelAdd(){
 
         location.reload();
-      
     }
     
     function clearToken() {

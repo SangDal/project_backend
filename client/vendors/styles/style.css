@@ -4515,7 +4515,18 @@ body.IE .register-page-wrap .container {
     width: 50%;
     margin-right: 20px;
 }
-
+.addlist {
+    font-size: 15px;
+    margin-top: 10px;
+}
+.addlistinput {
+    font-family: 'twayair';
+    font-size: 15px;
+    padding: 4px;
+}
+.addlistbtn {
+    margin-bottom: 20px;
+}
 @media (min-width:1301px) and (max-width:1400px) {
     
     .header {
