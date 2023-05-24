@@ -23,8 +23,18 @@ export async function update(userid, username, password, guardianHp, guardianHp2
 }
 
 export async function remove(userid) {
-    const query = 'DELETE FROM user WHERE userid = ?';
     const values = [userid];
 
+    
+    // 외래키 때문에 게시물 먼저 삭제해야함.
+    const board_del = 'delete from board where userid=?';
+    await db.query(board_del, values);
+
+    const query = 'DELETE FROM user WHERE userid = ?';
     await db.query(query, values);
+}
+
+export async function deleteboard(post_id){
+    return db.execute('delete from board where post_id=?', [post_id])
+    .then((result) => console.log(result[0]))
 }

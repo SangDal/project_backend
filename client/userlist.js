@@ -23,7 +23,6 @@ function fetchAndRenderMembers() {
           <td>${member.userid}</td>
           <td>${member.username}</td>
           <td>${member.guardianHp}</td>
-          <td>${member.guardianHp2}</td>
           <td>${member.hp}</td>
           <td>
           <div class="dropdown">
@@ -72,10 +71,6 @@ function addMember() {
     <input type="text" id="guardianHp" name="guardianHp" required>
   </div>
   <div>
-    <label for="guardianHp2">보호자 휴대폰 번호2:</label>
-    <input type="text" id="guardianHp2" name="guardianHp2" required>
-  </div>
-  <div>
     <label for="hp">휴대폰 번호:</label>
     <input type="text" id="hp" name="hp" required>
   </div>
@@ -91,7 +86,6 @@ function addMember() {
       username: addForm.elements.username.value,
       password: addForm.elements.password.value,
       guardianHp: addForm.elements.guardianHp.value,
-      guardianHp2: addForm.elements.guardianHp2.value,
       hp: addForm.elements.hp.value,
     };
     
@@ -141,10 +135,6 @@ function addMember() {
     <input type="text" id="guardianHp" name="guardianHp" required>
     </div>
     <div>
-    <label for="guardianHp2">보호자 휴대폰 번호2:</label>
-    <input type="text" id="guardianHp2" name="guardianHp2" required>
-    </div>
-    <div>
     <label for="hp">휴대폰 번호:</label>
     <input type="text" id="hp" name="hp" required>
     </div>
@@ -161,10 +151,9 @@ function addMember() {
       })
       .then(response => response.json())
       .then(data => {
-        const { username, guardianHp, guardianHp2, hp } = data;
+        const { username, guardianHp, hp } = data;
         updateForm.elements.username.value = username;
         updateForm.elements.guardianHp.value = guardianHp;
-        updateForm.elements.guardianHp2.value = guardianHp2;
         updateForm.elements.hp.value = hp;
       })
       .catch(error => console.error('회원 정보 조회 실패:', error));
@@ -177,7 +166,6 @@ function addMember() {
       const updatedData = {
       username: updateForm.elements.username.value,
       guardianHp: updateForm.elements.guardianHp.value,
-      guardianHp2: updateForm.elements.guardianHp2.value,
       hp: updateForm.elements.hp.value,
     };
     
