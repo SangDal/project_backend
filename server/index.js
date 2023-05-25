@@ -5,6 +5,7 @@ import adminRouter from './router/admin.js';
 import userRouter from  "./router/user.js"
 import dreamRouter from "./router/dream.js"
 import { config } from './config.js';
+// import kakaoRouter from "./router/kakao.js"
 import morgan from 'morgan';
 
 const app = express();
@@ -13,8 +14,9 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("tiny")); // 요청온거 확인하게 
 app.use(adminRouter);
-app.use("/user", userRouter);
+app.use("/user", userRouter); // 회원관리 
 app.use("/safedream", dreamRouter);
+
 
 
 app.listen(config.host.port, () => {

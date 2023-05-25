@@ -43,7 +43,7 @@ export async function createlist(req, res) {
     }
     return res.status(200).json({result})
 }
-// 게시글 작성하기
+// [관리자] 게시글 작성하기
 export async function newBoard(req, res){
     const {category, title, content} = req.body;
     console.log(category)
@@ -51,7 +51,7 @@ export async function newBoard(req, res){
     return res.status(201).json(board)
 }
 
-// 게시글 읽기
+// [관리자] 게시글 읽기
 export async function readBoard(req, res) {
     const post_id = req.query.post_id;
     // MySQL에서 게시판 정보를 조회합니다.
@@ -62,7 +62,7 @@ export async function readBoard(req, res) {
     return res.status(200).json({data})
 }
 
-// 게시글 삭제하기
+// [관리자] 게시글 삭제하기
 export async function deleteBoard(req, res){
     const post_id = req.query.post_id;
     await adminRepository.deleteboard(post_id)

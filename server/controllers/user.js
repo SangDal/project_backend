@@ -6,8 +6,8 @@ export async function getAll(req, res, next){
     const users = await userRepository.getAll();
     console.log("회원 조회 완료.");   
     return res.status(200).json(users);
-
 }
+
 export async function getOne(req, res, next){
   const id = req.params.userid;
   const user = await userRepository.getById(id)

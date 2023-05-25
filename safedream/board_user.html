@@ -36,52 +36,33 @@
                     <li><a href="#">관련사이트</a></li>
                     <li class="small_letter"><a href="./patrol.html" class="sub">순찰지역 등록</a></li>
                     <li class="small_letter"><a href="./safety.html" class="sub">안전 귀가 신청</a></li>
-                    <hr>
-                    <li><a href="./login_edit.html" onclick="clearToken()">로그아웃</a></li>
                 </ul>
             </div>      
             <div id="board"><p>게시판</p></div>
             <div id="category_btn">
-                <select id="category_combo" name="job">
-                    <option value="지킴이집 사용후기">지킴이집 사용후기</option>
+                <select class="category_combo" id="categorySelect" name="job">
+                    <option value="전체">전체</option>
+                    <option value="공지">공지</option>
                     <option value="위험지역 공유">위험지역 공유</option>
-                    <option value="지킴이집 업주 자유게시판">지킴이집 업주 자유게시판</option>
+                    <option value="자유게시판">자유게시판</option>
                 </select>
             </div>
-            <!-- <div id = 'btns'>
-                <div class="top_btn btn_selected">지킴이집 사용후기</div> <div class="top_btn">위험지역 공유</div>
-            </div> -->
             <div id="back">
-                <div id="count_all">
-                    <div>전체 764개의 글</div>
-                    <div id="new_content" onclick="location.href='./board_create.html'">글쓰기</div>
-                </div>
+                <div id="new_content" onclick="location.href='./board_create.html'">글쓰기</div>
+                <br>
                 <div id="category">
-                    <ul>
+                    <br>
+                    <ul class="list_title">
                         <li id="cat_1">제목</li>
                         <li id="cat_2">작성일</li>
                     </ul>
                 </div>
-                <div id="list_all">
-                    <ul class="content">
-                        <li class="title"  onclick="location.href='./board_tailpage.html'">gS24 일산점 사용후기</li>
-                        <li class="date">2023-04-27</li>
-                    </ul>
-                    <ul class="content">
-                        <li class="title">CU 역삼점 사용후기</li>
-                        <li class="date">2023-04-20</li>
-                    </ul>
-                    <ul class="content">
-                        <li class="title">GS24 역삼점 후기</li>
-                        <li class="date">2023-04-20</li>
-                    </ul>
-                    <ul class="content">
-                        <li class="title">세븐일레븐 강남역점 사용후기</li>
-                        <li class="date">2023-04-18</li>
-                    </ul>
+                <div class="list_all" id="boardList">
+
                 </div>
             </div>
-        </section>        
+        </section>
+        <script src="./board_user.js"></script>        
     </body>
 </html>
 

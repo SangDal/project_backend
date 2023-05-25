@@ -1,3 +1,4 @@
+// update_user_edit.html에서 회원탈퇴 버튼 클릭시 창 띄우기 
 let switchNow = false;    //스위치 상태 기억할 변수
 function delToggle() {
     console.log("object");
@@ -9,22 +10,34 @@ function delToggle() {
     switchNow = false;  //스위차는 끈 상태로 바꿈
     }
 }
-// 사이드바 생성 소스
+
+// 사이드바 생성 소스 
 function toggleMenu(){
     let sidebar = document.querySelector('.sidebar');
     sidebar.classList.toggle('active');
 }
+
 let switch_start = false;
-function singo_btn(guardianHp) {
+function singo_btn() {
     const userAgent = navigator.userAgent.toLowerCase();
+    console.log(userAgent);
+    const guardianHp = getGuardianHp(); // getGuardianHp() 함수를 호출하여 보호자 전화번호를 얻음
+    console.log(guardianHp); // 보호자 전화번호를 출력하거나 필요한 작업을 수행
+
+    let user_level = guardianHp.findOne({where:{PromiseResult,}});
+    console.log(user_level);
+
     let singo = document.querySelectorAll('.singo_btn');
     const start_btn = document.querySelector('#start_btn');
     const telButton = document.getElementById('tel');
     const smsButton = document.getElementById('sms');
+
     const tel = "document.location.href = 'tel:112'"; // 경찰서로 고정 될거기때문에 const
-    let sms = "document.location.href = ";// 내용물을 받아와야 해서 let으로 변수 선언
+    let sms = "document.location.href = ";// 내용물을 받아와야 해서 let으로 변수 선언 
+
     singo.forEach((data) => {
         data.classList.toggle('active');
+
         if (data.classList.contains('active')) {
             telButton.setAttribute('onclick', `${tel}`);
             smsButton.setAttribute('onclick', `${sms}`);
@@ -33,6 +46,7 @@ function singo_btn(guardianHp) {
             smsButton.setAttribute('onclick', "#");
         }
     });
+
     if (/iphone|ipad|ipod/.test(userAgent)) {
         // iOS 처리 코드 추가
         console.log("iOS에서 실행 중입니다.");
@@ -42,6 +56,7 @@ function singo_btn(guardianHp) {
         console.log("Android에서 실행 중입니다.");
         sms += `sms:${guardianHp}?body=고객님의 소중한 가족이 위험합니다`;
     }
+
     if (switch_start == false) {
         start_btn.innerText = "종료(작동중)";
         start_btn.style.backgroundColor = 'var(--color-btn-red)';
@@ -53,9 +68,12 @@ function singo_btn(guardianHp) {
         start_btn.style.color = 'black';
         switch_start = false;
     }
+
     smsButton.setAttribute('onclick', `${sms}`);
 }
-// main1.html 에서 사이렌 이미지위에 와이파이 뜨게 하는 js
+
+
+// main1.html 에서 사이렌 이미지위에 와이파이 뜨게 하는 js 
 let speaker = false;
 function toggleSpeaker(){
     if (speaker == false) {  //스위치가 꺼져 있으면
@@ -68,6 +86,7 @@ function toggleSpeaker(){
     audio.pause();
     }
 }
+
 // 사이렌 소리 !
 let switch_siren = false; // 사이렌소리 스위치
 const audio = new Audio("./audio/siren.mp3");
@@ -82,6 +101,7 @@ function playMusic(){
     }
 }
 /* 아이디 / 패스워드 찾기 */
+
 let IDswitch = false;    //스위치 상태 기억할 변수
 function alertToggle() {
     if (IDswitch == false) {  //스위치가 꺼져 있으면
@@ -92,7 +112,8 @@ function alertToggle() {
     IDswitch = false;  //스위차는 끈 상태로 바꿈
     }
 }
-let PWswitch = false;
+
+let PWswitch = false;  
 function PWToggle() {
     if (PWswitch == false) {  //스위치가 꺼져 있으면
     document.querySelector(".noticeBoxPW").style.display = "block"; // 보여주고
@@ -102,6 +123,7 @@ function PWToggle() {
     PWswitch = false;  //스위차는 끈 상태로 바꿈
     }
 }
+
 let switchNow2 = false;
 function PWAToggle() {
     if (switchNow2 == false) {  //스위치가 꺼져 있으면
@@ -116,13 +138,16 @@ function PWAToggle() {
 function goBack() {
     window.history.back();
 }
+
+
 function clearToken() {
     const token = localStorage.getItem('token');
     console.log(token);
     localStorage.clear(token);
     console.log('토큰 삭제 완료');
 }
-//
+// 
+
 async function getGuardianHp() {
     try {
       const token = localStorage.getItem('token'); // 토큰 가져오기
@@ -137,7 +162,10 @@ async function getGuardianHp() {
         const data = await response.json();
         console.log("-----------------data.guardianHp----------------");
         console.log(typeof(data.guardianHp));
-        singo_btn(data.guardianHp)
+
+        const guardianHp = data.guardianHp; // 응답 데이터에서 보호자 전화번호 필드를 추출하여 변수에 저장
+        return guardianHp; // 보호자 전화번호를 반환
+
       } else {
         throw new Error('서버 요청에 실패하였습니다.');
       }
@@ -145,3 +173,4 @@ async function getGuardianHp() {
       console.error(error);
     }
   }
+  

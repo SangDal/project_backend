@@ -1,9 +1,9 @@
-
 import bcrypt from 'bcrypt';
 import { config } from '../config.js';
 import { db as pool } from '../db/database.js';
 import jwt from 'jsonwebtoken';
 import * as adminRepository from '../data/admin.js';
+import * as Repository from '../data/userboard.js';
 
 
 
@@ -97,7 +97,7 @@ export async function updateUser(req, res) {
 
         // DB에 업데이트 쿼리를 보냄
         const sql = 'UPDATE user SET username = ?, password = ?, guardianHp = ?, hp = ? WHERE userid = ?';
-        await pool.query(sql, [username, hashedPassword,   guardianHp,hp, userid.userid]);
+        await pool.query(sql, [username, hashedPassword, guardianHp,hp, userid.userid]);
 
         res.status(200).json({ message: '회원 정보 수정 성공' });
     } catch (error) {
@@ -134,4 +134,79 @@ export async function me (req, res, next){
 
 function createJwtToken(userid) {
     return jwt.sign({userid}, config.jwt.secretKey, {expiresIn: config.jwt.expiresInSec})
+}
+
+// 보호자 전화번호 받아오기 
+export async function guardianHp(req, res, next){
+
+    console.log("컨트롤러들어옴");
+    const userid = await adminRepository.UserfindById(req.userid);
+
+    try {
+        // DB에서 해당 사용자를 삭제
+        const sql = 'SELECT guardianHp FROM user WHERE userid = ?';
+        const [rows] = await pool.query(sql, [userid.userid]);
+        const guardianHp = rows[0].guardianHp;
+    
+        // 성공시 보호자 번호 
+        res.status(200).json({ guardianHp });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: '서버 오류' });
+    }
+}
+
+
+// 드림앱 게시판 리스트 생성
+
+export async function createlist(req, res) {
+    const category = req.query.category;
+    let page = req.query.page;
+    // MySQL에서 게시판 정보를 조회합니다.
+    const result = await Repository.list(category, page);
+
+    if(!result){
+        return res.status(401).json({ error: 'Invalid userid' });
+    }
+
+    return res.status(200).json({result})
+}
+
+// 드림앱 게시글 작성하기
+export async function newBoard(req, res){
+
+    //토큰값 불러오기
+    const userid = await adminRepository.UserfindById(req.userid);
+    console.log("----------------user");
+    const {category, title, content} = req.body;
+    console.log(category)
+    const board = await Repository.createBoard(userid.userid, category, title, content);
+    return res.status(201).json(board)
+}
+
+// 드림앱 게시글 읽기
+export async function readBoard(req, res) {
+    const post_id = req.query.post_id;
+    // MySQL에서 게시판 정보를 조회합니다.
+
+    const data = await Repository.read(post_id);
+    if(!data){
+        return res.status(401).json({ error: '게시글을 불러올 수 없습니다.' });
+    }
+    return res.status(200).json({data})
+}
+
+// 드림앱 게시글 삭제하기
+export async function deleteBoard(req, res){
+    try{
+        const post_id = req.query.post_id;
+        await Repository.deleteboard(post_id);
+        res.sendStatus(204);
+
+    }catch (error) {
+        console.error(error);
+        res.status(500).json({ message: '서버 오류' });
+    }
+
 }

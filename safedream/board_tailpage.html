@@ -35,27 +35,27 @@
                     <li><a href="#">관련사이트</a></li>
                     <li class="small_letter"><a href="./patrol.html" class="sub">순찰지역 등록</a></li>
                     <li class="small_letter"><a href="./safety.html" class="sub">안전 귀가 신청</a></li>
-                    <hr>
-                    <li><a href="./login_edit.html" onclick="clearToken()">로그아웃</a></li>
                 </ul>
-            </div> 
-            <div id="board"><p>작성글 상세보기</p></div>
+            </div>  
+            <div id="board"><p>게시글 상세보기</p></div>
             <div id="back">
-                <h2 class="board-title">제목값 입력</h2>
-                <h3 class="board-category">작성자 이름, 작성 일자</h3>
+                <h4 class="board-category" id="board-category">카테고리</h4>
+                <h4 class="board-title" id="board-title">제목</h4>
+                <h4 class="board-category-bottom" id="upload-name">아이디 
+                </h4>
+                <h4 class="board-category-bottom" id="upload-date" style="color:gray;">날짜
+                </h4>
                 <hr>
-            <div class="board-content-box">
-                "
-                게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.게시글 내용입니다.
-                "
+            <div class="board-content-box" id="board-content">
+                로딩중입니다.
             </div>
             </div>
-            <div id = 'btns'>
-                <div id="btn-cancle" onclick="goBack()"> < 이전 페이지 </div>
-            </div>
+
+            <div id="btn-cancle" onclick="goBack()"> < 이전 페이지 </div>
+
         </section>
 
-
+    <script src="board_tailpage.js"></script>
     </body>
 </html>
 

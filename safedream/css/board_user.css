@@ -99,7 +99,7 @@ header {
 section {
     position: relative;
     padding-top: 10px;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
     height: 90%;
     box-sizing: border-box;
     flex-direction: column;
@@ -146,6 +146,8 @@ section {
 
 #back {
     position: relative;
+    display: flex;
+    flex-direction: column;
     background-color: #f4f4f4;
     width: 85%;
     border-radius: 13px;
@@ -160,13 +162,6 @@ p {
 }
 
 /* 게시글 카테고리 */
-#count_all {
-    text-align: left;
-    margin: 5px;
-    margin-bottom: 9px;
-    color: #737373;
-    font-size: small;
-}
 
 #new_content{
     position: absolute;
@@ -177,8 +172,8 @@ p {
     background-color: #8d9aac;
     text-align: center;
     width: 100px;
-    height: 28px;
-    line-height: 28px;
+    height: 33px;
+    line-height: 33px;
     border-radius: 20px;
 }
 
@@ -186,11 +181,13 @@ p {
     padding: 0;
     height: 35px;
     margin: 0;
-    border-bottom: 1px solid rgb(22, 22, 22);
+    margin-top: 10px;
+    border-bottom: 2px solid rgba(75, 76, 77, 0.651);
     display: flex;
     justify-content: space-between;
     padding-left: 4px;
     padding-right: 15px;
+    font-size: 17px;
 }
 
 #category > ul > li {
@@ -201,10 +198,11 @@ p {
 
 
 /* 게시글 목록 */
-#list_all {
+.list_all {
     width: 100%;
     height: 85%;
     border-bottom: 1px solid rgb(218, 218, 218);
+    overflow: scroll;
 }
 .content {
     width: 100%;
@@ -214,13 +212,14 @@ p {
     margin-bottom: 0;
     white-space: nowrap;
     clear: both;
+    font-weight: 500;
     border-bottom: 0.5px solid rgba(88, 88, 88, 0.377);
 }
 .content > li {
     list-style: none;
     color: #141414;
     margin: auto 8px;
-    font-size: 15px;
+    font-size: 16px;
 }
 li.title {
     text-align: left;
@@ -229,6 +228,7 @@ li.title {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
 }
 li.date {
     float: right;
@@ -280,7 +280,7 @@ li.date {
 }
 .sidebar.active{
     width: 50%;
-    height: 100%;
+    height: 140%;
     top: 0;
     right: 0;
     display: block;
@@ -317,7 +317,6 @@ li.date {
     width: 100%;
     text-decoration: none;
     font-size: medium;
-    color: black;
 }
 a.main {
     color: black;
@@ -353,15 +352,15 @@ hr {
     margin: 10px auto;
     color: #1f1e1e;
 }
-#category_combo {
+.category_combo {
     margin: auto;
     width: 100%;
-    height: 23px;
+    height: 30px;
     line-height: 25px;
     padding-left: 5px;
     padding-right:8px;
     text-align: left;
     border-radius: 6px;
     font-family: 'twayair';
-    font-size: 14px;
+    font-size: 16px;
 }
