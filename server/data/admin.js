@@ -7,10 +7,15 @@ export async function findByUsername(username) {
 export async function findById(userid){
     console.log("들어옴 findById");
     console.log(userid);
-    return db.execute('select userid from admin where userid=?', [userid]).then((result) => result[0][0]);
-
-    // 여기서 userid로 admin찾아서 
+    return db.execute('select userid from admin where userid=?', [userid]).then((admin) => admin[0][0]);
 }
+
+export async function UserfindById(userid){
+    console.log("들어옴 UserfindById");
+    console.log(userid);
+    return db.execute('select userid from user where userid=?', [userid]).then((user) => user[0][0]);
+}
+
 
 export async function login(userid, password) {
     return db.execute('select * from admin where userid=? and password=?', [userid, password]).then((result) => result[0][0]);

@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import * as userRepository from '../data/admin.js'
 import { config } from '../config.js';
 
-const AUTH_ERROR = { message: '인증 에러!md/auth'};
+const AUTH_ERROR = { message: '인증 에러!'};
 
 export const isAuth = async (req, res, next) => {
     const authHeader = req.get('Authorization');
@@ -19,17 +19,27 @@ export const isAuth = async (req, res, next) => {
         token,
         config.jwt.secretKey,
         async (error, decoded) => {
-            if(error){
+            if (error) {
                 return res.status(401).json(AUTH_ERROR);
             }
-            const user = await userRepository.findById(decoded.userid);
+            
+            const user = await userRepository.UserfindById(decoded.userid);
+            const admin = await userRepository.findById(decoded.userid);
             console.log("---------------------");
+            console.log(admin);
             console.log(user);
-            if(!user){
+        
+            if (admin) {
+                req.userid = admin.userid;
+            } else if (user) {
+                req.userid = user.userid;
+            } else {
                 return res.status(401).json(AUTH_ERROR);
             }
-            req.userid = user.userid;
-            next()
-        }
-    )
+            next();
+            }
+        );
+        
+    
 }
+
