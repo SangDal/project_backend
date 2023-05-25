@@ -10,6 +10,7 @@ export async function login(req, res, next){
 
         // MySQL에서 사용자 정보를 조회합니다.
     const result = await adminRepository.login(userid, password);
+    
     if(!result){
         return res.status(401).json({ error: 'Invalid userid or password' });
     }

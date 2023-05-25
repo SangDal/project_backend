@@ -21,7 +21,7 @@ export const config = {
         saltRounds: parseInt(required('BCRYPT_SALT_ROUND', 12))
     },
     host: {
-        port:parseInt(required('PORT', 8080))
+        port:parseInt(required('PORT', 3000))
     },
     db: {
         host: required('DB_HOST'),
@@ -29,7 +29,7 @@ export const config = {
         database: required('DB_DATABASE'),
         password: required('DB_PASSWORD')
     },
-    port:parseInt(required('PORT', 8080)),
+    port:parseInt(required('PORT', 3000)),
     cors: {
         allowedOrigin: required('CORS_ALLOW_ORIGIN')
     }

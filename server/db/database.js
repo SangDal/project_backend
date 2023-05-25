@@ -1,5 +1,5 @@
 import { config } from '../config.js';
-import * as mysql from 'mariadb';
+import mysql from 'mysql2';
 
 const pool = mysql.createPool({
     host: config.db.host,
