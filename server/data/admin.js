@@ -19,15 +19,15 @@ export async function login(userid, password) {
 
 // 게시판 리스트 불러오기
  
-export async function list(category) {
+export async function list(category, page) {
+    console.log(page)
     if (category === '전체') {
-        return db.execute('SELECT post_id, category, userid, title, DATE_FORMAT(created_At, \'%Y-%m-%d %H:%i:%s\') as created_At FROM board')
+        return db.execute('SELECT post_id, category, userid, title, DATE_FORMAT(created_At, \'%Y-%m-%d %H:%i:%s\') as created_At FROM board order by created_At desc limit ?, 10 ', [page])
           .then((result) => result[0]);
     } else {
-    return db.execute('SELECT post_id, category, userid, title, DATE_FORMAT(created_At, \'%Y-%m-%d %H:%i:%s\') as created_At FROM board WHERE category=?', [category])
+    return db.execute('SELECT post_id, category, userid, title, DATE_FORMAT(created_At, \'%Y-%m-%d %H:%i:%s\') as created_At FROM board WHERE category=? order by created_At desc limit ?, 10', [category, page])
     .then((result) => result[0])}
-    // .then(result => console.log(result))
-    // .catch(error => console.log(error));
+
 }
 
 // 게시판 글쓰기

@@ -35,8 +35,9 @@ function createJwtToken(userid) {
 
 export async function createlist(req, res) {
     const category = req.query.category;
+    let page = req.query.page;
     // MySQL에서 게시판 정보를 조회합니다.
-    const result = await adminRepository.list(category);
+    const result = await adminRepository.list(category, page);
     if(!result){
         return res.status(401).json({ error: 'Invalid userid' });
     }
@@ -71,7 +72,6 @@ export async function deleteBoard(req, res){
 // 메인페이지 카운팅 추가
 
 export async function countMain(req, res) {
-    console.log('----------')
     const countUser = await adminRepository.countUser();
     const countBoard = await adminRepository.countBoard();
     console.log(countUser, countBoard)
@@ -83,3 +83,4 @@ export async function countMain(req, res) {
     }
     return res.status(200).json({countUser, countBoard})
 }
+
