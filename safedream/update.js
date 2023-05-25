@@ -23,6 +23,7 @@ function singo_btn(guardianHp) {
     const smsButton = document.getElementById('sms');
     const tel = "document.location.href = 'tel:112'"; // 경찰서로 고정 될거기때문에 const
     let sms = "document.location.href = ";// 내용물을 받아와야 해서 let으로 변수 선언
+
     singo.forEach((data) => {
         data.classList.toggle('active');
         if (data.classList.contains('active')) {
@@ -36,7 +37,7 @@ function singo_btn(guardianHp) {
     if (/iphone|ipad|ipod/.test(userAgent)) {
         // iOS 처리 코드 추가
         console.log("iOS에서 실행 중입니다.");
-        sms += `sms:${guardianHp}?body=고객님의 소중한 가족이 위험합니다`;
+        sms += `sms:${guardianHp}&body=고객님의 소중한 가족이 위험합니다`;
     } else if (/android/.test(userAgent)) {
         // Android 처리 코드 추가
         console.log("Android에서 실행 중입니다.");

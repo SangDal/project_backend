@@ -50,11 +50,11 @@ function singo_btn() {
     if (/iphone|ipad|ipod/.test(userAgent)) {
         // iOS 처리 코드 추가
         console.log("iOS에서 실행 중입니다.");
-        sms += `sms:${guardianHp}?body=고객님의 소중한 가족이 위험합니다`;
+        sms += `sms:${guardianHp}&body=고객님의 소중한 가족이 위험합니다`; // IOS는 &
     } else if (/android/.test(userAgent)) {
         // Android 처리 코드 추가
         console.log("Android에서 실행 중입니다.");
-        sms += `sms:${guardianHp}?body=고객님의 소중한 가족이 위험합니다`;
+        sms += `sms:${guardianHp}?body=고객님의 소중한 가족이 위험합니다`;// 안드로이드 ?
     }
 
     if (switch_start == false) {
